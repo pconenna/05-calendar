@@ -67,10 +67,14 @@ $(function () {
     var timeBlocks = $('.container-lg').children();
     timeBlocks.each(function(){
       var blockID = $(this).attr('id');
-      console.log(blockID)
+      var description = $(this).children('.description');
       var scheduleItem = localStorage.getItem(blockID)
-      console.log(scheduleItem)
-      $(this).text = scheduleItem;
+      if(scheduleItem != null){
+        description.text(scheduleItem);
+
+      }
+      
+      
   
     })
   }
