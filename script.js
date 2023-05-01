@@ -33,14 +33,22 @@ $(function () {
     var timeBlocks = $('.container-lg').children();
     timeBlocks.each(function(){
       var hourIndex = $(this).attr('id').split('-')[1]; // jquery split returns an array
-      if (currentHour === hourIndex){
-        $(this).attr('class') = 'row time-block present';
+      // i tried using === here and it didn't work
+      if (currentHour == hourIndex){
+        $(this).addClass('present');
+        $(this).removeClass('past')
+        $(this).removeClass('future')
+        //covering all possible changes
       }
       else if(currentHour > hourIndex){
-        $(this).attr('class') = 'row time-block past';
+        $(this).addClass('past');
+        $(this).removeClass('present')
+        $(this).removeClass('future')
       }
       else if(currentHour < hourIndex){
-        $(this).attr('class') = 'row time-block future';
+        $(this).addClass('future');
+        $(this).removeClass('past')
+        $(this).removeClass('present')
       }
   
     })
