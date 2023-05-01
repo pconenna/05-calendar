@@ -63,5 +63,20 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  function getInputs(){
+    var timeBlocks = $('.container-lg').children();
+    timeBlocks.each(function(){
+      var blockID = $(this).attr('id');
+      console.log(blockID)
+      var scheduleItem = localStorage.getItem(blockID)
+      console.log(scheduleItem)
+      $(this).text = scheduleItem;
+  
+    })
+  }
+  getInputs();
+
+  
   // TODO: Add code to display the current date in the header of the page.
+  // i did some experimenting and realized that the assigment needs to be in a function so i'll just keep it in checkHour()
 });
