@@ -14,8 +14,7 @@ $(function () {
     //need id of the div that says hour-x
     //need the content of the text area with class description
     var time = $(this).parent();
-    var description =$(this).siblings('.description');
-    console.log(time.attr('id'))
+    var description = $(this).siblings('.description');
     localStorage.setItem(time.attr('id'),description.val())
 
   })
@@ -27,6 +26,31 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
+  function checkHour(){
+    var today = dayjs();
+    var currentHour = today.hour();
+    $('#currentDay').text(today.format('dddd MMMM DD')); // i'll put an ordinal on this later
+    var timeBlocks = $('.container-lg').children();
+    timeBlocks.each(function(){
+      var hourIndex = $(this).attr('id').split('-')[1]; // jquery split returns an array
+      if (currentHour === hourIndex){
+        $(this).attr('class') = 'row time-block present';
+      }
+      else if(currentHour > hourIndex){
+        $(this).attr('class') = 'row time-block past';
+      }
+      else if(currentHour < hourIndex){
+        $(this).attr('class') = 'row time-block future';
+      }
+  
+    })
+  
+
+  }
+  checkHour();
+ 
+
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
